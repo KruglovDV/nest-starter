@@ -6,12 +6,14 @@ import { AppService } from './app.service';
 import { UsersModule } from '../users/users.module';
 import { dataSourceOptions } from '../data-source';
 import 'reflect-metadata';
+import { LoggerModule } from '../logger/logger.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({}),
     TypeOrmModule.forRoot(dataSourceOptions),
     UsersModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

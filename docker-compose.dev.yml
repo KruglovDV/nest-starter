@@ -1,18 +1,5 @@
 version: "3.9"
 services:
-#  app:
-#    container_name: testApp
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "3000:3000"
-#    volumes:
-#      - .:/app
-#    depends_on:
-#      - db
-#    command: npm run start:dev
-
   db:
     container_name: testDB
     image: postgres:11.12

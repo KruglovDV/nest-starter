@@ -2,7 +2,17 @@ FROM node:19.8.1
 
 WORKDIR /app
 
+COPY package*.json ./
+RUN npm install
+
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+
+COPY . .
+
 EXPOSE 3000
 
-CMD ["npm", "run", "start:dev"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
+
+CMD ["npm", "run", "start:prod"]
 
