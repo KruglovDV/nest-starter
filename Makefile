@@ -9,3 +9,6 @@ generate-migration:
 
 migrate:
 	npm run build && npx typeorm migration:run -d ./dist/data-source.js
+
+e2e-test:
+	docker-compose -f ./docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from app

@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    container_name: e2eTestDB
+    image: postgres:11.12
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "test-user-pass"
+      POSTGRES_USER: "test-user"
+      POSTGRES_DB: "postgres"
+  app:
+    container_name: testApp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ./entrypoint.sh
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: "db"
+      DB_PORT: "5432"
+      DB_USER: "test-user"
+      DB_PASSWORD: "test-user-pass"
+      DB_NAME: "postgres"
+    depends_on:
+      - db
+    command: npm run test
